@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Acceso Especial ✨</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/inicio.css" />
+</head>
+<body>
+	<div class="panel" role="dialog" aria-labelledby="titulo" aria-describedby="descripcion">
+		<div class="hearts-bg" id="heartsLogin"></div>
+		<h1 id="titulo">Selecciona la fecha donde inicio todo(formal)</h1>
+		<p id="descripcion" class="desc">Marca la fecha donde iniciamos a ser novios para poder ingresar a mi sorpresa de cumplemes</p>
+		<form id="formAcceso" autocomplete="off">
+			<div class="mb-3">
+				<label for="clave" class="form-label">Fecha</label>
+				<input type="date" id="clave" name="clave" class="form-control" required />
+			</div>
+			<button type="submit" id="btnIngresar" class="btn-love">Entrar ❤</button>
+			<div id="estado" class="estado" aria-live="polite"></div>
+		</form>
+		<div class="footer-mini">Hecho con cariño · <span id="anioLogin"></span></div>
+	</div>
+	<script src="js/inicio.js"></script>
+	<script>
+	  // Diagnóstico: intentar enfocar el input tras carga
+	  window.addEventListener('DOMContentLoaded', ()=> {
+	    const campo = document.getElementById('clave');
+	    if(campo && campo.type === 'date') {
+	      campo.setAttribute('min','2024-01-01');
+	      campo.setAttribute('max','2026-12-31');
+	      // Placeholder visual (los inputs date no soportan placeholder real)
+	      campo.classList.add('date-empty');
+	      campo.addEventListener('change',()=> campo.classList.remove('date-empty'));
+	    }
+	    if(campo){
+	      campo.focus();
+	      console.log('Intento de focus aplicado');
+	      // Probar escritura programática para ver si readonly accidental
+	      const previo = campo.value;
+	      campo.value = previo;
+	    }
+	  });
+	</script>
+</body>
+</html>

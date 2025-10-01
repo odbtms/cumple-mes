@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carta 💌</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/amor.css" />
+  <!-- Página de carta estática: animación trasladada a sobre.html -->
+</head>
+<body>
+<div class="hearts-container" id="hearts"></div>
+<header class="navbar navbar-expand-md fixed-top">
+  <div class="container">
+  <a href="index.html" class="navbar-brand brand-heart">Para Valentina ❤</a>
+    <button class="navbar-toggler btn btn-sm btn-gradient" data-bs-toggle="collapse" data-bs-target="#navLove"><span class="navbar-toggler-icon"></span></button>
+    <nav id="navLove" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto gap-2">
+        <li class="nav-item"><a class="nav-link text-white-50" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link text-white-50" href="momentos.html">Momentos</a></li>
+        <li class="nav-item"><a class="nav-link text-white-50" href="galeria.html">Galería</a></li>
+  <li class="nav-item"><a class="nav-link active text-white" href="carta.html">Carta</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main style="margin-top:60px;">
+  <section class="carta py-5">
+    <div class="container py-5 carta-contenido">
+      <span class="seccion-titulo">PARA VALENTINA</span>
+      <h2>Una Carta desde mi Corazón</h2>
+      <p>Bueno, amorcito, es otro mes juntos. Como siempre, espero que sean muchos más a tu lado y poder seguir creciendo y mejorando juntos.
+En estos meses has demostrado ser mi pilarsito más importante. Gracias por siempre estar para mí, por tanta dedicación en cada una de las cosas que haces. Cada detalle que me das o me regalas me llena el corazón de una manera muy grata.
+Quiero más y más meses, años y una eternidad contigo. Gracias por ser tú, mi amor, por cada risa, cariño, chancheo y por los momentos en familia que me has regalado. Estoy muy agradecido de que nuestros caminos se cruzaran, porque así conocí a la maravillosa persona que eres.
+Gracias por todo, mi amor. Te amo con todo mi corazón.</p>
+      <p style="margin-top:2rem; font-weight:600; font-size:1.15rem; color:#ffb3d1;">Con todo mi amor,<br/>tomas 💘</p>
+    </div>
+  </section>
+  <section class="py-5" style="background:#24111d;">
+    <div class="container">
+      <div class="row g-3" id="gridCarta"></div>
+    </div>
+  </section>
+</main>
+<footer class="py-4 text-center"><div class="container small">Hecho con ❤️ · <span id="anio"></span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/imagenes.js"></script>
+<script>
+  document.getElementById('anio').textContent = new Date().getFullYear();
+  const heartsContainer = document.getElementById('hearts');
+  function spawnHeart(){const heart=document.createElement('div');heart.className='heart';heart.textContent=['❤','💖','💘','💕','💞'][Math.floor(Math.random()*5)];heart.style.left=Math.random()*100+'vw';heart.style.bottom='-40px';heart.style.fontSize=(12+Math.random()*26)+'px';heart.style.animationDuration=(5+Math.random()*4)+'s';heartsContainer.appendChild(heart);setTimeout(()=>heart.remove(),9000);} setInterval(spawnHeart,700);
+  const IMAGENES_RAIZ=['img/imagen1.jpeg','img/imagen2.jpeg','img/imagen3.jpeg','img/imagen4.jpeg','img/imagen5.jpeg','img/imagen6.jpeg','img/imagen7.jpeg','img/imagen8.jpeg','img/imagen9.jpeg','img/imagen10.jpeg','img/imagen11.jpeg','img/imagen12.jpeg','img/imagen13.jpeg','img/imagen14.jpeg','img/imagen18.jpeg','img/imagen19.jpeg','img/imagen21.jpeg','img/imagen23.jpeg','img/imagen24.jpeg','img/imagen25.jpeg','img/imagen26.jpeg','img/imagen28.jpeg'];
+  const grid=document.getElementById('gridCarta');
+  IMAGENES_RAIZ.slice(0,9).forEach((src,i)=>{ const col=document.createElement('div'); col.className='col-4 col-md-3 col-lg-2'; col.innerHTML=`<div class="mini-recuerdo reveal delay-${(i%4)+1} rounded-3 overflow-hidden" style="border:1px solid #3d2230; background:#2f1826;"><img src="${src}" loading="lazy" alt="Recuerdo carta ${i+1}" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.9); transition:.5s;"></div>`; grid.appendChild(col); });
+  grid.addEventListener('mouseover',e=>{ const img=e.target.closest('.mini-recuerdo img'); if(img) img.style.filter='brightness(1)'; });
+  grid.addEventListener('mouseleave',()=> grid.querySelectorAll('img').forEach(img=> img.style.filter='brightness(.9)'));
+  // Animación removida: ahora se accede mediante sobre.html
+</script>
+</body>
+</html>
